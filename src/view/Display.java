@@ -1,9 +1,9 @@
 /**
  * 
  */
-package View;
+package view;
 import java.util.Scanner;
-
+import model.*;
 /**
  * @author kathr
  *
@@ -12,11 +12,15 @@ public class Display {
 	
 	static Scanner userInput=new Scanner(System.in);
 	
+	public Display(){
+		
+	}
+	
 	/** Affiche le menu d'actions et retourne l'option selectionnée 
 	 */
-	public void menu()
+	public int menu()
 	{
-		
+		int choice=0;
 		System.out.println("Menu");
 		System.out.println("1: Déplacement manuel");
 		System.out.println("2: Deplacement automatique intelligent");
@@ -24,24 +28,23 @@ public class Display {
 		System.out.println("Choisissez une action:");
 		if(userInput.hasNextInt())
 		{
-			int choice=userInput.nextInt();
-			switch (choice)
-			{
-				case 1: //
-					break;
-				case 2: //
-					break;
-				case 3: //
-					break;
-				default: System.out.println("Invalid option");
-					break;
-			}
-			
+			choice=userInput.nextInt();
 		}
+		return choice;
 	}
-	public void dispLab()
+	public void dispLab(Labyrinthe laby)
 	{
-		
+		Case[][] cases=laby.getCases();
+		for(int i=0;i<laby.getTailleY();i++)
+		{
+			for(int j=0;j<laby.getTailleX();j++)
+			{
+				
+					System.out.print(cases[i][j].getType());
+				
+			}
+			System.out.print("\n");
+		}
 	}
 
 }
