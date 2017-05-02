@@ -54,6 +54,8 @@ public class Game{
 				laby.initFromFile(file);
 				play(laby);
 				endGame=endGame();
+				file=null;
+				laby=null;
 			}
 		}
 		
