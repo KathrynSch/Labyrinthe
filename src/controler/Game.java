@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.Robot;
+import java.lang.Runtime;
 
 
 /**
@@ -29,34 +30,42 @@ public class Game{
 	static Robot r;
 	
 	public static void main(String[] args)
-	{		
-		System.out.println("Choisissez un niveau:");
-		System.out.println("1: niveau 1");
-		System.out.println("2: niveau 2");
-		System.out.println("3: niveau 3");
-		if(userInput.hasNextInt())
+	{	
+		boolean endGame=false;
+		while(!endGame)
 		{
-			int niveau=userInput.nextInt();
-			switch(niveau){
-				case 1: //open file niveau1.txt
-						File file= new File("niveau1.txt");
-						Labyrinthe laby= new Labyrinthe();
-						laby.initFromFile(file);
-						play(laby);
-					break;
-				case 2: // open file niveau2.txt
-					break;
-				case 3: //open file niveau3.txt
-					break;
+			System.out.println("Choisissez un niveau:");
+			System.out.println("1: niveau 1");
+			System.out.println("2: niveau 2");
+			System.out.println("3: niveau 3");
+			File file=null;
+			if(userInput.hasNextInt())
+			{
+				int niveau=userInput.nextInt();
+				switch(niveau){
+					case 1: file= new File("niveau1.txt");
+						break;
+					case 2: file= new File("niveau2.txt");
+						break;
+					case 3: file= new File("niveau3.txt");
+						break;
+				}
+				Labyrinthe laby= new Labyrinthe();
+				laby.initFromFile(file);
+				play(laby);
+				endGame=endGame();
 			}
-	
-			
 		}
 		
 	}
 	
 	public static void play(Labyrinthe laby)
 	{
+		/**try{
+			Runtime.getRuntime().exec("clear");
+		}catch(IOException e){
+			e.printStackTrace();
+		}*/
 		//position départ joueur
 		//r.mouseMove(0,0);
 
@@ -80,7 +89,7 @@ public class Game{
 	public static void deplacer(Labyrinthe laby)
 	{
 		System.out.println("deplacer");
-		do{
+		while(!laby.isWin()){
 			display.dispLab(laby);
 			boolean moved=false;
 			//r.mouseMove(100, 100);
@@ -89,25 +98,36 @@ public class Game{
 				
 				if("q".equals(dir)){
 					//fleche gauche
-					moved=laby.move(laby.getCurrentPosY()-1, laby.getCurrentPosX());
+					moved=laby.move(laby.getCurrentPosY(), laby.getCurrentPosX()-1);
 				}
 				if("d".equals(dir)){
 					//fleche droite
-					moved=laby.move(laby.getCurrentPosY()+1, laby.getCurrentPosX());
+					moved=laby.move(laby.getCurrentPosY(), laby.getCurrentPosX()+1);
 				}
 				if("z".equals(dir)){
 					//fleche haut
-					moved=laby.move(laby.getCurrentPosY(), laby.getCurrentPosX()-1);
+					moved=laby.move(laby.getCurrentPosY()-1, laby.getCurrentPosX());
 				}
 				if("s".equals(dir)){
 					//fleche bas
-					moved=laby.move(laby.getCurrentPosY(), laby.getCurrentPosX()+1);
+					moved=laby.move(laby.getCurrentPosY()+1, laby.getCurrentPosX());
 				}
 			}			
-		}while(!laby.isWin());
-		
-		
-		
+		}
+		if(laby.isWin()){
+			System.out.println("gagne !!");
+		}
 	}
-
+	
+	public static boolean endGame()
+	{
+		System.out.println("REJOUER ?");
+		System.out.println("1: OUI   2: NON");
+		int choix=userInput.nextInt();
+		switch(choix){
+			case '1': return false;
+			case '2': return true;
+			default: return true;
+		}
+	}
 }

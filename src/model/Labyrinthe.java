@@ -93,15 +93,20 @@ public class Labyrinthe {
 	 * @param y
 	 * @throws ImpossibleMoveException
 	 */
-	public boolean move (int x, int y) //throws ImpossibleMoveException
+	public boolean move (int y, int x) //throws ImpossibleMoveException
 	{
 		if(cases[y][x].canMoveToCase()) // si la case où aller est un trou
 		{
+			System.out.println("canMove");
 			cases[posY][posX].setType('_');
+			System.out.println("Case A:: posY: "+posY+", posX: "+posX);
 			posX=x;
+			posY=y;
+			System.out.println("Vers Case B:: posY: "+posY+", posX: "+posX);
 			cases[y][x].setType('o');
 			return true;
 		}else{
+			System.out.println("canNotMove vers y="+y+" x="+x);
 			return false;
 		}
 	}
