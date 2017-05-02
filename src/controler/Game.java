@@ -68,7 +68,7 @@ public class Game{
 		}catch(IOException e){
 			e.printStackTrace();
 		}*/
-		//position départ joueur
+		//position dï¿½part joueur
 		//r.mouseMove(0,0);
 
 		display.dispLab(laby);
@@ -79,8 +79,9 @@ public class Game{
 					deplacer(laby);
 				break;
 			case 2: //deplacement automatique intelligent
+					intelligent(laby);
 				break;
-			case 3: //deplacment automatique aléatoire et sortie de jeu
+			case 3: //deplacment automatique alï¿½atoire et sortie de jeu
 				break;
 			default: System.out.println("Invalid option");
 				break;
@@ -88,9 +89,10 @@ public class Game{
 		
 	}
 	
+	
 	public static void deplacer(Labyrinthe laby)
 	{
-		System.out.println("deplacer");
+		System.out.println("Appuyez sur: z, s, d, ou f");
 		while(!laby.isWin()){
 			display.dispLab(laby);
 			boolean moved=false;
@@ -120,6 +122,40 @@ public class Game{
 			System.out.println("gagne !!");
 		}
 	}
+	
+	public static void intelligent(Labyrinthe laby)
+	{	int Max=4;
+		int Min=1;
+		while(!laby.isWin()){
+			display.dispLab(laby);
+			boolean moved=false;
+			while(!moved){
+				//String dir = userInput.nextLine();
+				int nombreAleatoire = Min + (int)(Math.random() * ((Max - Min) + 1));
+				
+				if(nombreAleatoire==1){
+					//fleche gauche
+					moved=laby.move(laby.getCurrentPosY(), laby.getCurrentPosX()-1);
+				}
+				if(nombreAleatoire==2){
+					//fleche droite
+					moved=laby.move(laby.getCurrentPosY(), laby.getCurrentPosX()+1);
+				}
+				if(nombreAleatoire==3){
+					//fleche haut
+					moved=laby.move(laby.getCurrentPosY()-1, laby.getCurrentPosX());
+				}
+				if(nombreAleatoire==4){
+					//fleche bas
+					moved=laby.move(laby.getCurrentPosY()+1, laby.getCurrentPosX());
+				}
+			}			
+		}
+		if(laby.isWin()){
+			System.out.println("gagne !!");
+		}
+	}
+	
 	
 	public static boolean endGame()
 	{
