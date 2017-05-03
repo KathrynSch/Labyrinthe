@@ -1,24 +1,30 @@
 /**
- * 
+ * Java Package MODEL
+ * contient les classes relatives à la composition du jeu
  */
 package model;
 
-/**
+/** Classe CaseImplémentée mère de CaseMur et CaseTrou
  * @author kathryn
- *
+ * @author pauline
+ * @version 1.0
  */
 public class CaseImplementee implements Case{
 	
 	/** ATTRIBUTS 
 	 * position en X et en Y de la case
 	 * bool vasy indique si il est possible ou non d'aller dans la case
+	 * char type qui correspond au caractère à afficher en console
 	 */
 	protected int posX;
 	protected int posY;
 	protected boolean vasy;
 	protected char type;
 	
-	/** CONSTRUCTEUR*/
+	/** CONSTRUCTEUR
+	 * @param x donne la position de la case
+	 * @param y donne la position de la case
+	 */
 	public CaseImplementee(int x, int y)
 	{
 		posX=x;
@@ -57,6 +63,7 @@ public class CaseImplementee implements Case{
 	{
 		type=t;
 	}
+
 	public char getType()
 	{
 		return type;

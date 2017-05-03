@@ -1,5 +1,6 @@
 /**
- * 
+ * Java Package Controler
+ * contient les classes relatives au tournement du jeu
  */
 package controler;
 
@@ -10,17 +11,20 @@ import java.io.File;
 import java.awt.Robot;
 
 
-/**
- * @author kathr
- *
+/** Classe Game contient methodes relatives au fonctionnement du jeu
+ * @author kathryn
+ * @author pauline
+ * @version 1.0
  */
-
 public class Game{
 	
 	static Scanner userInput =new Scanner(System.in);
 	static Display display= new Display();
 	static Robot r;
 	
+	/**Main lance le jeu et appelle les fonctions nécessaires au déroulement
+	 * @param args
+	 */
 	public static void main(String[] args)
 	{	
 		boolean endGame=false;
@@ -45,16 +49,11 @@ public class Game{
 		}
 	}
 	
+	/** function play affiche partie et envoie vers mode de jeu choisi
+	 * @param laby
+	 */
 	public static void play(Labyrinthe laby)
 	{
-		/**try{
-			Runtime.getRuntime().exec("clear");
-		}catch(IOException e){
-			e.printStackTrace();
-		}*/
-		//position dï¿½part joueur
-		//r.mouseMove(0,0);
-
 		display.dispLab(laby);
 		int choix=display.menu();
 		switch (choix)
@@ -71,12 +70,15 @@ public class Game{
 			default: System.out.println("Invalid option");
 				break;
 		}
-		
 	}
 	
 	
+	/** lance jeu en mode manuel
+	 * @param laby
+	 */
 	public static void manuel(Labyrinthe laby)
 	{
+		int compteur=0;
 		System.out.println("Appuyez sur: z, s, d, ou f");
 		while(!laby.isWin()){
 			display.dispLab(laby);
@@ -85,14 +87,21 @@ public class Game{
 			while(!moved){
 				String dir = userInput.nextLine();
 				moved=deplacer(laby, dir);
+				if(moved){compteur++;}
 			}			
 		}
 		if(laby.isWin()){
 			display.dispLab(laby);
 			System.out.println("gagne !!");
+			System.out.println("Nombre de coups: "+compteur);
 		}
 	}
 	
+	/** permet de déplacer le user vers la direction envoyée
+	 * @param laby
+	 * @param dir vers la case où se déplacer
+	 * @return true if moved case, false otherwise
+	 */
 	public static boolean deplacer(Labyrinthe laby, String dir)
 	{
 		if("q".equals(dir)){
@@ -116,8 +125,12 @@ public class Game{
 		}
 	}
 	
+	/** lance jeu en aléatoire totale
+	 * @param laby
+	 */
 	public static void robot(Labyrinthe laby)
 	{	
+		int compteur=0;
 		int Max=3, Min=0;
 		String[] dir={"q","d","s","z"};
 		while(!laby.isWin()){
@@ -126,23 +139,28 @@ public class Game{
 			while(!moved){
 				int rdm = Min + (int)(Math.random() * ((Max - Min) + 1));
 				moved=deplacer(laby, dir[rdm]);
+				if(moved){compteur++;}
 			}			
 		}
 		if(laby.isWin()){
 			display.dispLab(laby);
 			System.out.println("gagne !!");
+			System.out.println("Nombre de coups: "+compteur);
 		}
 	}
 	
-	
+	/**
+	 * @return true if user wants to quit, false otherwise
+	 */
 	public static boolean endGame()
 	{
 		System.out.println("REJOUER ?");
 		System.out.println("1: OUI   2: NON");
 		int choix=userInput.nextInt();
 		switch(choix){
-			case '1': return false;
-			case '2': return true;
+			case 1: 
+				return false;
+			case 2: return true;
 			default: return true;
 		}
 	}

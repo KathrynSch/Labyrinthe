@@ -1,5 +1,6 @@
 /**
- * 
+ * Java Package MODEL
+ * contient les classes relatives à la composition du jeu
  */
 package model;
 
@@ -9,9 +10,10 @@ import java.io.File;
 import java.util.Scanner;
 import java.io.FileNotFoundException;
 
-/**
- * @author kathr
- *
+/** Classe Labyrinthe, contient les fonctions relatives à la modificatin du labyrinthes
+ * @author kathryn
+ * @author pauline
+ * @version 1.0
  */
 public class Labyrinthe {
 	
@@ -26,7 +28,10 @@ public class Labyrinthe {
 	private int posY;
 	private Case[][] cases;
 	
-	public Labyrinthe() //constructeur
+	/**CONSTRUCTEUR
+	 * initialise tous les attributs de la classe à 0 	 
+	 */
+	public Labyrinthe() 
 	{
 		tailleX=0;
 		tailleY=0;
@@ -40,11 +45,10 @@ public class Labyrinthe {
 	/** Lit un labyrinthe avec un fichier en param
 	 * Initialise tous les attributs avec les valeurs lues dans le fichier 
 	 * puis instancie la collection de cases et chaque case
-	 * déclenche l'exception FileFormatException si le fichier ne peut etre lu ou si son format est incorrect
+	 * déclenche l'exception FileNoteFoundExceptions si le fichier est introuvable
 	 * @param lab
-	 * @throws FileFormatException
 	 */
-	public void initFromFile(File file) //throws FileFormatException(lab)
+	public void initFromFile(File file) 
 	{
 		try{
 			Scanner input = new Scanner(file);
@@ -86,10 +90,10 @@ public class Labyrinthe {
 	}
 	
 	/** Tente de bouger le curseur dans la case (x,y) en param.
-	 * Declenche l'exception ImpossibleMoveException si la case déborde du labyrinthe ou si on ne peut pas aller dans la case
+	 * Declenche l'exception ArrayIndexOutOfBoundsException si la case déborde 
+	 * du labyrinthe ou si on ne peut pas aller dans la case
 	 * @param x
 	 * @param y
-	 * @throws ImpossibleMoveException
 	 */
 	public boolean move (int y, int x) 
 	{
@@ -106,10 +110,11 @@ public class Labyrinthe {
 				return true;
 			}else{
 				//System.out.println("canNotMove vers y="+y+" x="+x);
+				System.out.println("Can't push the wall !!");
 				return false;
 			}
 		}catch(ArrayIndexOutOfBoundsException e){
-			System.out.println("out of matrix");
+			System.out.println("out of labyrinthe");
 			return false;
 			
 		}
@@ -123,6 +128,9 @@ public class Labyrinthe {
 		//
 	}
 	
+	/**
+	 * @return true if user reached end point, otherwise false
+	 */
 	public boolean isWin()
 	{
 		if((posX==endX)&&(posY==endY))

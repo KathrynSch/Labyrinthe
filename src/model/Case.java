@@ -1,10 +1,16 @@
 /**
- * 
+ * Java Package MODEL
+ * contient les classes relatives à la composition du jeu
  */
 package model;
 
-/**
+/** Interface de la classe CaseImplémentée
  * @author kathryn
+ * @author pauline
+ * @version 1.0
+ */
+/**
+ * @author kathr
  *
  */
 public interface Case {
@@ -26,8 +32,16 @@ public interface Case {
 	 */
 	public boolean canMoveToCase();
 	
-	public void setType(char t);
+	/**
+	 * @return le char de la case à afficher en console
+	 */
 	public char getType();
+	
+	/**
+	 * @param t le char correspondant au type de case
+	 */
+	public void setType(char t);
+	
 
 	
 }

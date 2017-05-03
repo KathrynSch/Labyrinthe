@@ -1,12 +1,14 @@
 /**
- * 
+ * Java Package View
+ * contient les classes relatives à l'affichage
  */
 package view;
 import java.util.Scanner;
 import model.*;
 /**
- * @author kathr
- *
+ * @author kathryn
+ * @author pauline
+ * @version 1.0
  */
 public class Display {
 	
@@ -16,7 +18,9 @@ public class Display {
 		
 	}
 	
-	/** Affiche le menu d'actions et retourne l'option selectionnée 
+
+	/** Affiche le menu d'actions
+	 * @return l'option sélectionnée
 	 */
 	public int menu()
 	{
@@ -33,6 +37,9 @@ public class Display {
 		return choice;
 	}
 	
+	/** affiche welcome menu
+	 * @return option de niveau sélectionné
+	 */
 	public int welcome()
 	{
 		System.out.println("Choisissez un niveau:");
@@ -47,6 +54,9 @@ public class Display {
 		return 0;
 	}
 	
+	/**Affiche labyrinthe
+	 * @param laby
+	 */
 	public void dispLab(Labyrinthe laby)
 	{
 		Case[][] cases=laby.getCases();
