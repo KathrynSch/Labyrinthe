@@ -7,7 +7,6 @@ import model.Case;
 
 import java.io.File;
 import java.util.Scanner;
-import java.io.IOException;
 import java.io.FileNotFoundException;
 
 /**
@@ -57,7 +56,6 @@ public class Labyrinthe {
 			endX=input.nextInt();
 			endY=input.nextInt();
 			
-			System.out.println("attribution ok");
 			cases=new Case[tailleX][tailleY];
 			Case nwCase=null;
 			for(int i=0; i<tailleY; i++)
@@ -70,17 +68,17 @@ public class Labyrinthe {
 					char c=line.charAt(ch++);
 					if(c=='X'){
 						nwCase=new CaseMur(i,j);
+						//System.out.println("New mur");
 					}
 					else if(c=='_'){
 						nwCase=new CaseTrou(i,j);
-					}
-					else{
-						//throw new FileFormatException();
+						//System.out.println("New trou");
 					}
 					cases[i][j]=nwCase;
 				}	
 			}
-			cases[posY][posX].setType('o');
+			cases[startY][startX].setType('*');
+			cases[endY][endX].setType('O');
 			input.close();
 		}catch(FileNotFoundException e){
 			e.printStackTrace();
@@ -93,21 +91,21 @@ public class Labyrinthe {
 	 * @param y
 	 * @throws ImpossibleMoveException
 	 */
-	public boolean move (int y, int x) //throws ImpossibleMoveException
+	public boolean move (int y, int x) 
 	{
 		try{
 			if(cases[y][x].canMoveToCase()) // si la case où aller est un trou
 			{
-				System.out.println("canMove");
+				//System.out.println("canMove");
 				cases[posY][posX].setType('_');
-				System.out.println("Case A:: posY: "+posY+", posX: "+posX);
+				//System.out.println("Case A:: posY: "+posY+", posX: "+posX);
 				posX=x;
 				posY=y;
-				System.out.println("Vers Case B:: posY: "+posY+", posX: "+posX);
-				cases[y][x].setType('o');
+				//System.out.println("Vers Case B:: posY: "+posY+", posX: "+posX);
+				cases[y][x].setType('*');
 				return true;
 			}else{
-				System.out.println("canNotMove vers y="+y+" x="+x);
+				//System.out.println("canNotMove vers y="+y+" x="+x);
 				return false;
 			}
 		}catch(ArrayIndexOutOfBoundsException e){
@@ -165,14 +163,4 @@ public class Labyrinthe {
 		return cases;
 	}
 	
-	
-	public void setCurrentPosX(int x)
-	{
-		posX=x;
-	}
-	
-	public void setCurrentPosY(int y)
-	{
-		posY=y;
-	}
 }

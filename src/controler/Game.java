@@ -5,17 +5,9 @@ package controler;
 
 import model.Labyrinthe;
 import view.Display;
-import model.Case;
-
 import java.util.Scanner;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.awt.Robot;
-import java.lang.Runtime;
 
 
 /**
@@ -34,14 +26,8 @@ public class Game{
 		boolean endGame=false;
 		while(!endGame)
 		{
-			System.out.println("Choisissez un niveau:");
-			System.out.println("1: niveau 1");
-			System.out.println("2: niveau 2");
-			System.out.println("3: niveau 3");
 			File file=null;
-			if(userInput.hasNextInt())
-			{
-				int niveau=userInput.nextInt();
+			int niveau = display.welcome();
 				switch(niveau){
 					case 1: file= new File("niveau1.txt");
 						break;
@@ -56,9 +42,7 @@ public class Game{
 				endGame=endGame();
 				file=null;
 				laby=null;
-			}
 		}
-		
 	}
 	
 	public static void play(Labyrinthe laby)
@@ -76,12 +60,13 @@ public class Game{
 		switch (choix)
 		{
 			case 1: //deplacement manuel
-					deplacer(laby);
+					manuel(laby);
 				break;
 			case 2: //deplacement automatique intelligent
-					intelligent(laby);
+					
 				break;
-			case 3: //deplacment automatique al�atoire et sortie de jeu
+			case 3: //deplacment automatique aleatoire et sortie de jeu
+					robot(laby);
 				break;
 			default: System.out.println("Invalid option");
 				break;
@@ -90,7 +75,7 @@ public class Game{
 	}
 	
 	
-	public static void deplacer(Labyrinthe laby)
+	public static void manuel(Labyrinthe laby)
 	{
 		System.out.println("Appuyez sur: z, s, d, ou f");
 		while(!laby.isWin()){
@@ -99,59 +84,52 @@ public class Game{
 			//r.mouseMove(100, 100);
 			while(!moved){
 				String dir = userInput.nextLine();
-				
-				if("q".equals(dir)){
-					//fleche gauche
-					moved=laby.move(laby.getCurrentPosY(), laby.getCurrentPosX()-1);
-				}
-				if("d".equals(dir)){
-					//fleche droite
-					moved=laby.move(laby.getCurrentPosY(), laby.getCurrentPosX()+1);
-				}
-				if("z".equals(dir)){
-					//fleche haut
-					moved=laby.move(laby.getCurrentPosY()-1, laby.getCurrentPosX());
-				}
-				if("s".equals(dir)){
-					//fleche bas
-					moved=laby.move(laby.getCurrentPosY()+1, laby.getCurrentPosX());
-				}
+				moved=deplacer(laby, dir);
 			}			
 		}
 		if(laby.isWin()){
+			display.dispLab(laby);
 			System.out.println("gagne !!");
 		}
 	}
 	
-	public static void intelligent(Labyrinthe laby)
-	{	int Max=4;
-		int Min=1;
+	public static boolean deplacer(Labyrinthe laby, String dir)
+	{
+		if("q".equals(dir)){
+			//fleche gauche
+			return laby.move(laby.getCurrentPosY(), laby.getCurrentPosX()-1);
+		}
+		if("d".equals(dir)){
+			//fleche droite
+			return laby.move(laby.getCurrentPosY(), laby.getCurrentPosX()+1);
+		}
+		if("z".equals(dir)){
+			//fleche haut
+			return laby.move(laby.getCurrentPosY()-1, laby.getCurrentPosX());
+		}
+		if("s".equals(dir)){
+			//fleche bas
+			return laby.move(laby.getCurrentPosY()+1, laby.getCurrentPosX());
+		}
+		else{
+			return false;
+		}
+	}
+	
+	public static void robot(Labyrinthe laby)
+	{	
+		int Max=3, Min=0;
+		String[] dir={"q","d","s","z"};
 		while(!laby.isWin()){
 			display.dispLab(laby);
 			boolean moved=false;
 			while(!moved){
-				//String dir = userInput.nextLine();
-				int nombreAleatoire = Min + (int)(Math.random() * ((Max - Min) + 1));
-				
-				if(nombreAleatoire==1){
-					//fleche gauche
-					moved=laby.move(laby.getCurrentPosY(), laby.getCurrentPosX()-1);
-				}
-				if(nombreAleatoire==2){
-					//fleche droite
-					moved=laby.move(laby.getCurrentPosY(), laby.getCurrentPosX()+1);
-				}
-				if(nombreAleatoire==3){
-					//fleche haut
-					moved=laby.move(laby.getCurrentPosY()-1, laby.getCurrentPosX());
-				}
-				if(nombreAleatoire==4){
-					//fleche bas
-					moved=laby.move(laby.getCurrentPosY()+1, laby.getCurrentPosX());
-				}
+				int rdm = Min + (int)(Math.random() * ((Max - Min) + 1));
+				moved=deplacer(laby, dir[rdm]);
 			}			
 		}
 		if(laby.isWin()){
+			display.dispLab(laby);
 			System.out.println("gagne !!");
 		}
 	}

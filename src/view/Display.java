@@ -32,6 +32,21 @@ public class Display {
 		}
 		return choice;
 	}
+	
+	public int welcome()
+	{
+		System.out.println("Choisissez un niveau:");
+		System.out.println("1: niveau 1");
+		System.out.println("2: niveau 2");
+		System.out.println("3: niveau 3");
+		if(userInput.hasNextInt())
+		{
+			int niveau=userInput.nextInt();
+			return niveau;
+		}
+		return 0;
+	}
+	
 	public void dispLab(Labyrinthe laby)
 	{
 		Case[][] cases=laby.getCases();
@@ -45,6 +60,7 @@ public class Display {
 			}
 			System.out.print("\n");
 		}
+		System.out.print("\n\n");
 	}
 
 }
