@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="WINDOWS-1252" standalone="no"?>
+<jardesc>
+    <jar path="Labyrinthe_tp1/jeu.jar"/>
+    <options buildIfNeeded="true" compress="true" descriptionLocation="/Labyrinthe_tp1/description.jardesc" exportErrors="true" exportWarnings="true" includeDirectoryEntries="false" overwrite="false" saveDescription="true" storeRefactorings="false" useSourceFolders="false"/>
+    <storedRefactorings deprecationInfo="true" structuralOnly="false"/>
+    <selectedProjects/>
+    <manifest generateManifest="true" mainClassHandleIdentifier="=Labyrinthe_tp1/src&lt;controler{Game.java[Game" manifestLocation="" manifestVersion="1.0" reuseManifest="false" saveManifest="false" usesManifest="true">
+        <sealing sealJar="false">
+            <packagesToSeal/>
+            <packagesToUnSeal/>
+        </sealing>
+    </manifest>
+    <selectedElements exportClassFiles="true" exportJavaFiles="false" exportOutputFolder="false">
+        <file path="/Labyrinthe_tp1/README.md"/>
+        <file path="/Labyrinthe_tp1/.project"/>
+        <file path="/Labyrinthe_tp1/niveau2.txt"/>
+        <javaElement handleIdentifier="=Labyrinthe_tp1/src"/>
+        <file path="/Labyrinthe_tp1/niveau1.txt"/>
+        <file path="/Labyrinthe_tp1/javadoc.xml"/>
+        <file path="/Labyrinthe_tp1/laby.jar"/>
+        <file path="/Labyrinthe_tp1/.classpath"/>
+        <file path="/Labyrinthe_tp1/niveau3.txt"/>
+        <file path="/Labyrinthe_tp1/niveau11.txt"/>
+    </selectedElements>
+</jardesc>
