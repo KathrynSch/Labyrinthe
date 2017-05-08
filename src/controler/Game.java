@@ -5,8 +5,11 @@
 package controler;
 
 import model.Labyrinthe;
-import view.Display;
+import view.*;
 import java.util.Scanner;
+
+import javax.swing.SwingUtilities;
+
 import java.io.File;
 import java.awt.Robot;
 
@@ -27,6 +30,7 @@ public class Game{
 	 */
 	public static void main(String[] args)
 	{	
+		
 		boolean endGame=false;
 		while(!endGame)
 		{
@@ -54,6 +58,12 @@ public class Game{
 	 */
 	public static void play(Labyrinthe laby)
 	{
+		SwingUtilities.invokeLater(new Runnable(){
+			public void run(){
+				LabyrintheGraphique fenetre = new LabyrintheGraphique(laby);
+				fenetre.setVisible(true);
+			}
+		});
 		display.dispLab(laby);
 		int choix=display.menu();
 		switch (choix)
