@@ -12,11 +12,8 @@ import java.awt.FlowLayout;
 import java.awt.event.*;
 import java.awt.Font;
 import model.Labyrinthe;
-import javax.swing.Timer;
 import java.awt.event.ActionListener;
-import java.util.concurrent.TimeUnit;
 
-//import java.util.concurrent.TimeUnit;	
 
 /**
  * @author kathryn
@@ -145,8 +142,8 @@ public class LabyrintheGraphique extends JFrame implements ActionListener{
 		setContentPane(panelMain);
 	}
 	
-	/**
-	 * @return
+	/**move fish up
+	 * @return true if moved, false otherwise
 	 */
 	public boolean moveUp()
 	{
@@ -164,6 +161,9 @@ public class LabyrintheGraphique extends JFrame implements ActionListener{
 			return false;
 		}
 	}
+	/**move fish down
+	 * @return true if moved, false otherwise
+	 */
 	public boolean moveDown()
 	{
 		int x=laby.getCurrentPosX();
@@ -180,6 +180,9 @@ public class LabyrintheGraphique extends JFrame implements ActionListener{
 			return false;
 		}
 	}
+	/**move fish right
+	 * @return true if moved, false otherwise
+	 */
 	public boolean moveRight()
 	{
 		int x=laby.getCurrentPosX();
@@ -196,6 +199,9 @@ public class LabyrintheGraphique extends JFrame implements ActionListener{
 			return false;
 		}
 	}
+	/**move fish left
+	 * @return true if moved, false otherwise
+	 */
 	public boolean moveLeft()
 	{
 		int x=laby.getCurrentPosX();
@@ -212,6 +218,9 @@ public class LabyrintheGraphique extends JFrame implements ActionListener{
 			return false;
 		}
 	}
+
+	/** résoud labyrinthe automatique
+	 */
 	public void robot()
 	{
 		int Max=3, Min=0;
@@ -251,6 +260,8 @@ public class LabyrintheGraphique extends JFrame implements ActionListener{
 		}
 	}
 	
+	/* handles button actions
+	 */
 	public void actionPerformed(ActionEvent e)
 	{
 		Object source= e.getSource();
