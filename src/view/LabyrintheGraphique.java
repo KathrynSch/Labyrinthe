@@ -1,6 +1,6 @@
 /**
  * Java Package View
- * contient les classes relatives à l'affichage
+ * contient les classes relatives ï¿½ l'affichage
  */
 package view;
 import javax.swing.*;
@@ -52,8 +52,8 @@ public class LabyrintheGraphique extends JFrame implements ActionListener{
 	static ImageIcon or=new ImageIcon(new ImageIcon("or.png").getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT));
 	
 	/**Constructeur de la fenetre graphique
-	 * initialise la fenetre graphique avec le composants nécessaires
-	 * @param lab labyrinthe envoyé par le main
+	 * initialise la fenetre graphique avec le composants nï¿½cessaires
+	 * @param lab labyrinthe envoyï¿½ par le main
 	 */
 	public LabyrintheGraphique(Labyrinthe lab)
 	{
@@ -98,7 +98,7 @@ public class LabyrintheGraphique extends JFrame implements ActionListener{
 		}
 		//set fish 
 		matrice[laby.getCurrentPosY()][laby.getCurrentPosX()].setIcon(fish);
-		//set pépite d'or
+		//set pï¿½pite d'or
 		matrice[laby.getEndY()][laby.getEndX()].setIcon(or);
 		//panel Action
 			//flow layout
@@ -247,7 +247,7 @@ public class LabyrintheGraphique extends JFrame implements ActionListener{
 		if(laby.isWin()){
 			System.out.println("gagne !!");
 			System.out.println("Nombre de coups: "+compteur);
-			comments.setText("Gagné !!! En "+compteur+" coups");
+			comments.setText("Gagnï¿½ !!! En "+compteur+" coups");
 		}
 	}
 	
@@ -289,7 +289,7 @@ public class LabyrintheGraphique extends JFrame implements ActionListener{
 		if(laby.isWin()){
 			System.out.println("gagne !!");
 			System.out.println("Nombre de coups: "+compteur);
-			comments.setText("Gagné !!! En "+compteur+" coups");
+			comments.setText("GagnÃ© !!! En "+compteur+" coups");
 			
 
 		}
