@@ -23,6 +23,7 @@ public class LabyrintheGraphique extends JFrame implements ActionListener{
 	static Labyrinthe laby;
 	JPanel panelLaby= new JPanel();
 	JPanel panelAction= new JPanel();
+	JPanel panelMain= new JPanel();
 	static BorderLayout border=new BorderLayout();
 
 	// contient grille labyrinthe, boutons dir, boutons robot et smart
@@ -34,9 +35,16 @@ public class LabyrintheGraphique extends JFrame implements ActionListener{
 	static JButton smartButton= new JButton("SMART");
 	static JButton[][] matrice=null;
 	
+	
+	
+	
 	public LabyrintheGraphique(Labyrinthe lab)
 	{
+		
 		super();
+		panelMain.add(panelLaby);
+		panelMain.add(panelAction);
+
 		
 		laby=lab;
 		GridLayout grid= new GridLayout(laby.getTailleY()+3, laby.getTailleX());
@@ -52,18 +60,19 @@ public class LabyrintheGraphique extends JFrame implements ActionListener{
 		
 		//creation autres boutons
 		panelAction.setLayout(border);
-		panelAction.add(upButton, border.WEST);
-		panelAction.add(downButton);
-		panelAction.add(leftButton);
-		panelAction.add(rightButton);
-		panelAction.add(robotButton);
-		panelAction.add(smartButton);
+		panelAction.add(upButton, border.NORTH);
+		panelAction.add(downButton,border.CENTER);
+		panelAction.add(leftButton,border.WEST);
+		panelAction.add(rightButton,border.EAST);
+		panelAction.add(robotButton,border.SOUTH);
+		panelAction.add(smartButton,border.SOUTH);
 		upButton.addActionListener(this);
 		downButton.addActionListener(this);
 		leftButton.addActionListener(this);
 		rightButton.addActionListener(this);
 		robotButton.addActionListener(this);
 		smartButton.addActionListener(this);
+		
 		build();
 	}
 	
@@ -71,7 +80,7 @@ public class LabyrintheGraphique extends JFrame implements ActionListener{
 	{
 		setTitle("Labyrinthe");//titre de la fenetre
 		setSize(600,600);//dimensions de la fenetre
-		setLocationRelativeTo(null);//positionnement au centre de l'écran
+		setLocationRelativeTo(null);//positionnement au centre de l'ï¿½cran
 		setResizable(true);// pas de redimensionnement possible
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //fenetre se ferme par appuye sur croix
 		setContentPane(panelLaby);
