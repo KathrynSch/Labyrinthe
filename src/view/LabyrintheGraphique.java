@@ -1,5 +1,6 @@
 /**
- * 
+ * Java Package View
+ * contient les classes relatives à l'affichage
  */
 package view;
 import javax.swing.*;
@@ -11,11 +12,16 @@ import java.awt.FlowLayout;
 import java.awt.event.*;
 import java.awt.Font;
 import model.Labyrinthe;
+import javax.swing.Timer;
+import java.awt.event.ActionListener;
+import java.util.concurrent.TimeUnit;
+
 //import java.util.concurrent.TimeUnit;	
 
 /**
- * @author kathr
- *
+ * @author kathryn
+ * @author pauline
+ * @version 2.0
  */
 public class LabyrintheGraphique extends JFrame implements ActionListener{
 	
@@ -23,9 +29,9 @@ public class LabyrintheGraphique extends JFrame implements ActionListener{
 	
 	static Labyrinthe laby;
 	// Panels
-	JPanel panelLaby= new JPanel();
-	JPanel panelAction= new JPanel();
-	JPanel panelMain= new JPanel(); //container
+	static JPanel panelLaby= new JPanel();
+	static JPanel panelAction= new JPanel();
+	static JPanel panelMain= new JPanel(); //container
 
 	// grille labyrinthe, boutons dir, boutons robot et smart
 	static JButton upButton= new JButton("UP");
@@ -37,14 +43,18 @@ public class LabyrintheGraphique extends JFrame implements ActionListener{
 	static JButton[][] matrice=null;
 	
 	//Text
-	JLabel title= new JLabel();
-	JLabel comments= new JLabel();
+	static JLabel title= new JLabel();
+	static JLabel comments= new JLabel();
 	
 	//game components
 	static int compteur=0;
 	static ImageIcon fish=new ImageIcon(new ImageIcon("fish.png").getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT));
 	static ImageIcon or=new ImageIcon(new ImageIcon("or.png").getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT));
 	
+	/**Constructeur de la fenetre graphique
+	 * initialise la fenetre graphique avec le composants nécessaires
+	 * @param lab labyrinthe envoyé par le main
+	 */
 	public LabyrintheGraphique(Labyrinthe lab)
 	{
 		
@@ -64,8 +74,14 @@ public class LabyrintheGraphique extends JFrame implements ActionListener{
 		
 		//labels
 		title.setText("Labyrinthe niveau "+laby.getNiveau());
-		title.setFont(new Font("Serif",Font.PLAIN,30));
+		title.setFont(new Font("Sans Serif",Font.PLAIN,30));
+		title.setForeground(Color.BLUE);
 		title.setHorizontalAlignment(SwingConstants.CENTER);
+		
+		comments.setFont(new Font("Sans Serif",Font.PLAIN,30));
+		comments.setHorizontalAlignment(SwingConstants.CENTER);
+		comments.setForeground(Color.MAGENTA);
+		
 		//panel Laby
 			//grid layout
 		GridLayout grid= new GridLayout(laby.getTailleY(), laby.getTailleX()); 
@@ -88,6 +104,8 @@ public class LabyrintheGraphique extends JFrame implements ActionListener{
 			//flow layout
 		FlowLayout flow= new FlowLayout();
 		panelAction.setLayout(flow);
+		panelAction.setBackground(Color.white);
+
 			//creation autres boutons
 		panelAction.add(upButton);
 		panelAction.add(downButton);
@@ -95,6 +113,14 @@ public class LabyrintheGraphique extends JFrame implements ActionListener{
 		panelAction.add(rightButton);
 		panelAction.add(robotButton);
 		panelAction.add(smartButton);
+			//design boutons
+		upButton.setBackground(Color.GREEN);
+		downButton.setBackground(Color.GREEN);
+		leftButton.setBackground(Color.GREEN);
+		rightButton.setBackground(Color.GREEN);
+		robotButton.setBackground(Color.CYAN);
+		smartButton.setBackground(Color.CYAN);
+		
 			// add Action Listener 
 		upButton.addActionListener(this);
 		downButton.addActionListener(this);
@@ -106,10 +132,12 @@ public class LabyrintheGraphique extends JFrame implements ActionListener{
 		build();
 	}
 	
+	/** Set window properties
+	 */
 	private void build()
 	{
 		setTitle("Labyrinthe");//titre de la fenetre
-		setSize(600,600);//dimensions de la fenetre
+		setSize(900,900);//dimensions de la fenetre
 		setLocationRelativeTo(null);//positionnement au centre de l'ecran
 		setResizable(true);// pas de redimensionnement possible
 		setBackground(Color.WHITE);
@@ -117,6 +145,9 @@ public class LabyrintheGraphique extends JFrame implements ActionListener{
 		setContentPane(panelMain);
 	}
 	
+	/**
+	 * @return
+	 */
 	public boolean moveUp()
 	{
 		int x=laby.getCurrentPosX();
@@ -185,6 +216,7 @@ public class LabyrintheGraphique extends JFrame implements ActionListener{
 	{
 		int Max=3, Min=0;
 		
+		
 		while(!laby.isWin()){
 			
 			boolean moved=false;
@@ -205,7 +237,7 @@ public class LabyrintheGraphique extends JFrame implements ActionListener{
 					System.out.println("MOVED");
 					// sleep 1 second
 //					try {
-//						TimeUnit.SECONDS.sleep(1);
+//						TimeUnit.MILLISECONDS.sleep(10);
 //					} catch (InterruptedException e) {
 //						e.printStackTrace();
 //					}
