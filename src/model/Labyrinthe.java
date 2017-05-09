@@ -27,12 +27,14 @@ public class Labyrinthe {
 	private int posX;
 	private int posY;
 	private Case[][] cases;
+	private int niv;
 	
 	/**CONSTRUCTEUR
 	 * initialise tous les attributs de la classe à 0 	 
 	 */
-	public Labyrinthe() 
+	public Labyrinthe(int niveau) 
 	{
+		niv=niveau;
 		tailleX=0;
 		tailleY=0;
 		startX=0;
@@ -169,6 +171,10 @@ public class Labyrinthe {
 	public Case[][] getCases()
 	{
 		return cases;
+	}
+	public int getNiveau()
+	{
+		return niv;
 	}
 	
 }

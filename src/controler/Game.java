@@ -44,7 +44,7 @@ public class Game{
 					case 3: file= new File("niveau3.txt");
 						break;
 				}
-				Labyrinthe laby= new Labyrinthe();
+				Labyrinthe laby= new Labyrinthe(niveau);
 				laby.initFromFile(file);
 				play(laby);
 				endGame=endGame();
