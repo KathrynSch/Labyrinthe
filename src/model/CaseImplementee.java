@@ -19,7 +19,7 @@ public class CaseImplementee implements Case{
 	protected int posX;
 	protected int posY;
 	protected boolean vasy;
-	protected char type;
+	protected String type;
 	
 	/** CONSTRUCTEUR
 	 * @param x donne la position de la case
@@ -59,12 +59,12 @@ public class CaseImplementee implements Case{
 			return false;
 		}
 	}
-	public void setType(char t)
+	public void setType(String t)
 	{
 		type=t;
 	}
 
-	public char getType()
+	public String getType()
 	{
 		return type;
 	}

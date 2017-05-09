@@ -81,8 +81,8 @@ public class Labyrinthe {
 					cases[i][j]=nwCase;
 				}	
 			}
-			cases[startY][startX].setType('*');
-			cases[endY][endX].setType('O');
+			cases[startY][startX].setType("*");
+			cases[endY][endX].setType("O");
 			input.close();
 		}catch(FileNotFoundException e){
 			e.printStackTrace();
@@ -101,12 +101,12 @@ public class Labyrinthe {
 			if(cases[y][x].canMoveToCase()) // si la case où aller est un trou
 			{
 				//System.out.println("canMove");
-				cases[posY][posX].setType('_');
+				cases[posY][posX].setType("_");
 				//System.out.println("Case A:: posY: "+posY+", posX: "+posX);
 				posX=x;
 				posY=y;
 				//System.out.println("Vers Case B:: posY: "+posY+", posX: "+posX);
-				cases[y][x].setType('*');
+				cases[y][x].setType("*");
 				return true;
 			}else{
 				//System.out.println("canNotMove vers y="+y+" x="+x);

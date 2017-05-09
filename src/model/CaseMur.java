@@ -22,7 +22,7 @@ public class CaseMur extends CaseImplementee{
 	{
 		super(x,y); // appelle le constructeur de la classe mère
 		vasy=false;
-		type='X';
+		type="X";
 	}
 
 }

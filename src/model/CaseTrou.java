@@ -22,6 +22,6 @@ public class CaseTrou extends CaseImplementee{
 	{
 		super(x,y); // appelle le constructeur de la classe mère
 		vasy=true;
-		type='_';
+		type="_";
 	}
 }

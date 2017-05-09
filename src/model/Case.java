@@ -35,12 +35,12 @@ public interface Case {
 	/**
 	 * @return le char de la case à afficher en console
 	 */
-	public char getType();
+	public String getType();
 	
 	/**
 	 * @param t le char correspondant au type de case
 	 */
-	public void setType(char t);
+	public void setType(String t);
 	
 
 	
