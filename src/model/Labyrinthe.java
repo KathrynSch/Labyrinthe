@@ -151,6 +151,14 @@ public class Labyrinthe {
 	{
 		return posX;
 	}
+	public int getEndX()
+	{
+		return endX;
+	}
+	public int getEndY()
+	{
+		return endY;
+	}
 	
 	/**
 	 * @return current position Y posY

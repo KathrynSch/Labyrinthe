@@ -4,6 +4,8 @@
  */
 package model;
 
+import javax.swing.ImageIcon;
+
 /** Interface de la classe CaseImplémentée
  * @author kathryn
  * @author pauline
@@ -41,6 +43,8 @@ public interface Case {
 	 * @param t le char correspondant au type de case
 	 */
 	public void setType(String t);
+	
+	public ImageIcon getIcon();
 	
 
 	

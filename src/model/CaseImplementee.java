@@ -4,6 +4,8 @@
  */
 package model;
 
+import javax.swing.ImageIcon;
+
 /** Classe CaseImplémentée mère de CaseMur et CaseTrou
  * @author kathryn
  * @author pauline
@@ -20,6 +22,7 @@ public class CaseImplementee implements Case{
 	protected int posY;
 	protected boolean vasy;
 	protected String type;
+	protected ImageIcon icon;
 	
 	/** CONSTRUCTEUR
 	 * @param x donne la position de la case
@@ -68,5 +71,10 @@ public class CaseImplementee implements Case{
 	{
 		return type;
 	}
+	public ImageIcon getIcon()
+	{
+		return icon;
+	}
+	
 
 }

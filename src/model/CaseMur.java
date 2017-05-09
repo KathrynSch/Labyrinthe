@@ -4,6 +4,10 @@
  */
 package model;
 
+import java.awt.Image;
+
+import javax.swing.ImageIcon;
+
 /**Classe CaseMur, hérite de CaseImplémentée
  * @author kathryn
  * @author pauline
@@ -22,6 +26,7 @@ public class CaseMur extends CaseImplementee{
 	{
 		super(x,y); // appelle le constructeur de la classe mère
 		vasy=false;
+		icon= new ImageIcon(new ImageIcon("coral.png").getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT));;
 		type="X";
 	}
 
